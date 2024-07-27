@@ -84,7 +84,9 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         return self.vm.categories.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let item = (self.vm.categories[indexPath.row].items?.allObjects as? [Item]){
+        if let item = (self.vm.categories[indexPath.row].items?.allObjects as? [Item])?.sorted(by: { item1, item2 in
+            Int(item1.id ?? "0")! < Int(item2.id ?? "0")!
+        }){
            if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell{
                 cell.updateCell(title: self.vm.categories[indexPath.row].name ?? "", items: item)
                 cell.tableViewIndex = indexPath
