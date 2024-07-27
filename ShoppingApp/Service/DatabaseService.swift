@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import CoreData
 
 class DatabaseService{
     static var shared = DatabaseService()
@@ -26,6 +26,7 @@ class DatabaseService{
                     itemToBeSaved.name = "\(item.name ?? "")"
                     itemToBeSaved.icon = "\(item.icon ?? "")"
                     itemToBeSaved.price = item.price ?? 0.0
+                    itemToBeSaved.isLiked = item.isLiked
                     cateogryToBeSaved.addToItems(itemToBeSaved)
                 }
              
@@ -40,9 +41,10 @@ class DatabaseService{
             }
         }
     }
-    func getAllData() -> Result<[Category],Error>{
+    func getAllData<T: NSFetchRequestResult>(fetchRequest: NSFetchRequest<T>,sortDescriptors: [NSSortDescriptor] = []) -> Result<[T],Error>{
+        fetchRequest.sortDescriptors = sortDescriptors
         do{
-            let categories = try context.fetch(Category.fetchRequest())
+            let categories = try context.fetch(fetchRequest)
             return .success(categories)
         }
         catch{
@@ -59,5 +61,30 @@ class DatabaseService{
         }
         
         return true
+    }
+    
+    func saveItemsToCart(id: String,name: String,units: Int,imageURL: String,price: String){
+        let itemToBeSavedToCart = Cart(context: self.context)
+        itemToBeSavedToCart.id = id
+        itemToBeSavedToCart.name = name
+        itemToBeSavedToCart.quantity =   itemToBeSavedToCart.quantity + Int64(units)
+        itemToBeSavedToCart.price = Double(price)!
+        itemToBeSavedToCart.icon = imageURL
+        do{
+            try context.save()
+        }
+        catch{
+            print(error)
+        }
+    }
+    
+    func updateCartItemQuantity(cartItemToBeUpdated: Cart){
+        cartItemToBeUpdated.quantity = cartItemToBeUpdated.quantity + 1
+        do{
+            try context.save()
+        }
+        catch{
+            print(error)
+        }
     }
 }

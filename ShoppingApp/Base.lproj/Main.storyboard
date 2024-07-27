@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,9 +19,78 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sO-h1-Fcf">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkB-kh-KwA">
+                                        <rect key="frame" x="155" y="67" width="82.333333333333314" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="4pQ-h0-sqO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hamburgerIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MpC-KT-PoX">
+                                        <rect key="frame" x="8" y="67" width="28" height="27.999999999999993"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="CU6-R7-GmY"/>
+                                            <constraint firstAttribute="height" constant="28" id="r9x-uc-CCW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Qp-cm-rfF">
+                                        <rect key="frame" x="338" y="61" width="47" height="40"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEs-Sn-gPz">
+                                                <rect key="frame" x="0.0" y="1.6666666666666643" width="47" height="38"/>
+                                                <color key="tintColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="47" id="OTk-VH-3GM"/>
+                                                </constraints>
+                                                <imageReference key="image" image="cart" catalog="system" symbolScale="medium"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6au-BC-Kjc">
+                                                <rect key="frame" x="22" y="1" width="24" height="22"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGz-TE-DiN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="22"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="ZGz-TE-DiN" firstAttribute="leading" secondItem="6au-BC-Kjc" secondAttribute="leading" id="87U-fl-XLS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZGz-TE-DiN" secondAttribute="bottom" id="Kae-FK-ffO"/>
+                                                    <constraint firstItem="ZGz-TE-DiN" firstAttribute="top" secondItem="6au-BC-Kjc" secondAttribute="top" id="L0c-qR-nZw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZGz-TE-DiN" secondAttribute="trailing" id="eRS-X0-BKd"/>
+                                                    <constraint firstAttribute="width" constant="24" id="ujj-qH-Edf"/>
+                                                    <constraint firstAttribute="height" constant="22" id="z5D-Jc-JxA"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <constraints>
+                                            <constraint firstItem="kEs-Sn-gPz" firstAttribute="top" secondItem="2Qp-cm-rfF" secondAttribute="top" id="6n9-0Q-x1j"/>
+                                            <constraint firstAttribute="height" constant="40" id="Gg6-8X-mrW"/>
+                                            <constraint firstAttribute="bottom" secondItem="kEs-Sn-gPz" secondAttribute="bottom" id="LMX-kd-JKj"/>
+                                            <constraint firstAttribute="trailing" secondItem="kEs-Sn-gPz" secondAttribute="trailing" id="Zcg-v2-t2K"/>
+                                            <constraint firstItem="6au-BC-Kjc" firstAttribute="top" secondItem="2Qp-cm-rfF" secondAttribute="top" constant="1" id="cGk-lQ-41X"/>
+                                            <constraint firstAttribute="trailing" secondItem="6au-BC-Kjc" secondAttribute="trailing" constant="1" id="jch-1e-XWZ"/>
+                                            <constraint firstAttribute="width" constant="47" id="qey-CA-cj3"/>
+                                            <constraint firstItem="kEs-Sn-gPz" firstAttribute="leading" secondItem="2Qp-cm-rfF" secondAttribute="leading" id="ucb-rf-kdy"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
+                                    <constraint firstItem="2Qp-cm-rfF" firstAttribute="top" secondItem="5sO-h1-Fcf" secondAttribute="top" constant="61" id="78R-Fl-dTe"/>
+                                    <constraint firstItem="MpC-KT-PoX" firstAttribute="leading" secondItem="5sO-h1-Fcf" secondAttribute="leading" constant="8" id="OUm-co-kTX"/>
                                     <constraint firstAttribute="height" constant="113" id="SiE-NF-gGB"/>
+                                    <constraint firstItem="MpC-KT-PoX" firstAttribute="top" secondItem="5sO-h1-Fcf" secondAttribute="top" constant="67" id="TrS-J1-3iR"/>
+                                    <constraint firstAttribute="bottom" secondItem="MpC-KT-PoX" secondAttribute="bottom" constant="18" id="qmn-pe-TaE"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Qp-cm-rfF" secondAttribute="trailing" constant="8" id="trg-F4-uDw"/>
+                                    <constraint firstItem="KkB-kh-KwA" firstAttribute="top" secondItem="5sO-h1-Fcf" secondAttribute="top" constant="67" id="w7Z-0Z-vX3"/>
+                                    <constraint firstItem="KkB-kh-KwA" firstAttribute="leading" secondItem="MpC-KT-PoX" secondAttribute="trailing" constant="119" id="xUs-V5-FL2"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="asU-cm-bRW">
@@ -41,20 +111,41 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cartItemLbl" destination="ZGz-TE-DiN" id="eja-hH-zIV"/>
+                        <outlet property="cartView" destination="6au-BC-Kjc" id="sos-DF-vzx"/>
                         <outlet property="tableView" destination="asU-cm-bRW" id="WD4-RN-Ehx"/>
                     </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="m4H-IZ-T5x">
+                    <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7a-f3-zrV">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageReference key="image" image="cart" catalog="system" symbolScale="small"/>
+                        </imageView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="7IS-UZ-lzc"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="hamburgerIcon" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

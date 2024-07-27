@@ -32,6 +32,9 @@
                                 <color key="tintColor" red="0.89019607840000003" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" buttonSize="mini"/>
+                                <connections>
+                                    <action selector="favouriteBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="UA0-bH-pH0"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sv6-ai-m8g">
                                 <rect key="frame" x="4" y="147" width="122" height="48"/>
@@ -90,6 +93,7 @@
             <size key="customSize" width="130" height="195"/>
             <connections>
                 <outlet property="addBtn" destination="rvj-Ut-mu4" id="V3h-Hi-Usv"/>
+                <outlet property="favouriteBtnPressed" destination="dw2-Kd-uhu" id="IOE-Gy-AbX"/>
                 <outlet property="itemImageView" destination="7GN-gj-ewd" id="ioA-7h-bPb"/>
                 <outlet property="itemName" destination="tRm-I3-TPe" id="sJ5-iY-45b"/>
                 <outlet property="priceLbl" destination="mWU-Sh-Qxy" id="ZiK-MF-6cY"/>

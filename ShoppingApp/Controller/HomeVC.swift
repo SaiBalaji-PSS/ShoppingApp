@@ -12,6 +12,9 @@ class HomeVC: UIViewController {
     private var vm = HomeViewModel()
     private var cancellables = Set<AnyCancellable>()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var cartView: UIView!
+    
+    @IBOutlet weak var cartItemLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,7 @@ class HomeVC: UIViewController {
         self.configureUI()
         vm.loadAllProducts()
         self.setupBinding()
-      
+        vm.getAllDatafromCart()
         
     }
 
@@ -36,13 +39,16 @@ class HomeVC: UIViewController {
                         print("Items are: \n")
                         items.forEach { item  in
                           
-                            print(item.name ?? "")
+                            print(item.id ?? "")
                         }
                     }
                 }
                 self.tableView.reloadData()
             }
             
+        }.store(in: &cancellables)
+        vm.$carts.receive(on: RunLoop.main).sink { cartItems  in
+            self.cartItemLbl.text = "\(cartItems.count)"
         }.store(in: &cancellables)
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
@@ -62,7 +68,7 @@ class HomeVC: UIViewController {
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
         self.tableView.separatorStyle = .none
-        
+        self.cartView.layer.cornerRadius = 10
         
     }
     
@@ -78,11 +84,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         return self.vm.categories.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let item = self.vm.categories[indexPath.row].items?.allObjects as? [Item]{
+        if let item = (self.vm.categories[indexPath.row].items?.allObjects as? [Item]){
            if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell{
                 cell.updateCell(title: self.vm.categories[indexPath.row].name ?? "", items: item)
-           
-         
+                cell.tableViewIndex = indexPath
+                cell.delegate = self
                 return cell
             }
         }
@@ -91,5 +97,16 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 350
+    }
+}
+
+extension HomeVC: CategoryCellDelegate{
+    func didPressAddBtn(favouriteItem: Item) {
+        self.vm.saveItemToCart(id: favouriteItem.id ?? "", name: favouriteItem.name ?? "",units: 1, imageURL: favouriteItem.icon ?? "", price: "\(favouriteItem.price)")
+    }
+
+    func didPressFavouriteBtn(tableViewIndex: IndexPath, index: IndexPath, likedItem: Item) {
+        print("ITEM  \(likedItem.name ?? "") IS \(likedItem.isLiked)")
+        self.vm.updateLikeStatus(itemLiked: likedItem, isLiked: likedItem.isLiked)
     }
 }

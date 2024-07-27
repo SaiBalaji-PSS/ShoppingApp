@@ -28,6 +28,7 @@ enum ResponseModel{
         let name: String?
         let icon: String?
         let price: Double?
+        let isLiked = false
     }
 
 }
