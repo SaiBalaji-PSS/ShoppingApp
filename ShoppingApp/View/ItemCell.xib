@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ItemCell" customModule="ShoppingApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWG-7O-5iE">
+                        <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7GN-gj-ewd">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="147"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dw2-Kd-uhu">
+                                <rect key="frame" x="100" y="8" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="0jq-XN-hvy"/>
+                                    <constraint firstAttribute="width" constant="22" id="axK-jY-Hn8"/>
+                                </constraints>
+                                <color key="tintColor" red="0.89019607840000003" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" buttonSize="mini"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sv6-ai-m8g">
+                                <rect key="frame" x="4" y="147" width="122" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carrot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRm-I3-TPe">
+                                        <rect key="frame" x="0.0" y="0.0" width="122" height="12"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="hBk-Y9-eTl">
+                                        <rect key="frame" x="0.0" y="20" width="122" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="140/Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWU-Sh-Qxy">
+                                                <rect key="frame" x="0.0" y="0.0" width="33.666666666666664" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvj-Ut-mu4">
+                                                <rect key="frame" x="87.666666666666671" y="0.0" width="34.333333333333329" height="28"/>
+                                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="plus.app.fill" catalog="system" buttonSize="mini"/>
+                                                <connections>
+                                                    <action selector="addBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="WSV-7w-V6c"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="sv6-ai-m8g" secondAttribute="bottom" id="23Z-yX-4ce"/>
+                            <constraint firstItem="sv6-ai-m8g" firstAttribute="leading" secondItem="WWG-7O-5iE" secondAttribute="leading" constant="4" id="5I4-Vl-e1X"/>
+                            <constraint firstAttribute="trailing" secondItem="7GN-gj-ewd" secondAttribute="trailing" id="6Ia-Pb-8hj"/>
+                            <constraint firstAttribute="trailing" secondItem="sv6-ai-m8g" secondAttribute="trailing" constant="4" id="LUN-Ki-00O"/>
+                            <constraint firstItem="sv6-ai-m8g" firstAttribute="top" secondItem="7GN-gj-ewd" secondAttribute="bottom" id="S2O-Eh-nGu"/>
+                            <constraint firstAttribute="trailing" secondItem="dw2-Kd-uhu" secondAttribute="trailing" constant="8" id="bnr-BG-uyF"/>
+                            <constraint firstItem="7GN-gj-ewd" firstAttribute="leading" secondItem="WWG-7O-5iE" secondAttribute="leading" id="coT-b2-IU4"/>
+                            <constraint firstItem="dw2-Kd-uhu" firstAttribute="top" secondItem="WWG-7O-5iE" secondAttribute="top" constant="8" id="ern-NO-Izf"/>
+                            <constraint firstItem="7GN-gj-ewd" firstAttribute="top" secondItem="WWG-7O-5iE" secondAttribute="top" id="zeS-Tu-dpm"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="WWG-7O-5iE" secondAttribute="trailing" id="4qV-04-12n"/>
+                <constraint firstItem="WWG-7O-5iE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ab9-S4-fIm"/>
+                <constraint firstItem="WWG-7O-5iE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Gg6-gl-Xqa"/>
+                <constraint firstAttribute="bottom" secondItem="WWG-7O-5iE" secondAttribute="bottom" id="M3P-me-ELM"/>
+            </constraints>
+            <size key="customSize" width="130" height="195"/>
+            <connections>
+                <outlet property="addBtn" destination="rvj-Ut-mu4" id="V3h-Hi-Usv"/>
+                <outlet property="itemImageView" destination="7GN-gj-ewd" id="ioA-7h-bPb"/>
+                <outlet property="itemName" destination="tRm-I3-TPe" id="sJ5-iY-45b"/>
+                <outlet property="priceLbl" destination="mWU-Sh-Qxy" id="ZiK-MF-6cY"/>
+            </connections>
+            <point key="canvasLocation" x="200" y="70.774647887323951"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
