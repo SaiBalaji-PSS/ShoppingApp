@@ -32,7 +32,7 @@ class ItemCell: UICollectionViewCell {
 
     func updateCell(itemName: String,price: String,imageURL: String,isLiked: Bool){
         self.itemName.text = itemName
-        self.priceLbl.text = price
+        self.priceLbl.text = "$ \(price)"
         self.itemImageView.sd_setImage(with: URL(string: imageURL))
         if isLiked{
             favouriteBtnPressed.setImage(UIImage(systemName: "heart.fill"), for: .normal)

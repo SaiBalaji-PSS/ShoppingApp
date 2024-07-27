@@ -28,14 +28,15 @@ class CartItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.setupShadow()
+        self.bgView.dropShadow()
         
     }
     private func setupShadow() {
-          // Set the shadow color
+         
         self.bgView.layer.borderColor = UIColor.gray.cgColor
         self.bgView.layer.borderWidth = 1
         self.bgView.layer.cornerRadius = 4.0
+     
       }
 
     func updateCell(imageURL: String,title: String,quantity: Int64,totalPrice: Double){
@@ -83,8 +84,9 @@ extension UIView {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = .zero
-        layer.shadowRadius = 1
+        layer.shadowRadius = 4.0
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        layer.cornerRadius = 4.0
     }
 }

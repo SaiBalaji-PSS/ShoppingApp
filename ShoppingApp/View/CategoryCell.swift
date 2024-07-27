@@ -32,6 +32,7 @@ class CategoryCell: UITableViewCell {
         self.itemCollectionView.delegate = self
         self.itemCollectionView.dataSource = self
         self.itemCollectionView.register(UINib(nibName: "ItemCell", bundle: nil),forCellWithReuseIdentifier: "ItemCell")
+        self.itemCollectionView.showsHorizontalScrollIndicator = false 
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -64,17 +65,17 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
             cell.updateCell(itemName: self.items[indexPath.row].name ?? "", price: "\(self.items[indexPath.row].price)", imageURL: self.items[indexPath.row].icon ?? "", isLiked: self.items[indexPath.row].isLiked)
             print("IS CELL ITEM LIKED \(self.items[indexPath.row].isLiked)")
             cell.delegate = self
-            cell.layer.cornerRadius = 4.0
-            cell.layer.borderColor = UIColor.gray.cgColor
-            cell.layer.borderWidth = 1.0
-      
+            cell.dropShadow()
+            
+            
             return cell
         }
         return UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 250)
+        return CGSize(width: 180, height: 250)
     }
+    
 }
 extension CategoryCell: ItemCellDelegate{
     func didPressAddBtn(indexPath: IndexPath) {

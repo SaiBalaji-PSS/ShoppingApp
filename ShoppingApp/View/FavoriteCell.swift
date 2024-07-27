@@ -37,7 +37,7 @@ class FavoriteCell: UITableViewCell {
         self.currentUnit = Int(item.unit)
         self.iconImageView.sd_setImage(with: URL(string: item.icon ?? ""))
         self.itemNameLbl.text = item.name
-        self.unitNameLbl.text = "\(item.unit) \(item.price)"
+        self.unitNameLbl.text = "Unit: \(item.unit)  $ \(item.price)"
         self.favoriteBtn.setImage(item.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
         
     }
