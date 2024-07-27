@@ -13,6 +13,7 @@ enum FileServiceError: Error{
 
 class FileService{
     static var shared = FileService()
+    private init(){}
     func loadJSONFile<T: Codable>(responseType: T.Type) -> Result<T,Error>{
         let fileURL = Bundle.main.url(forResource: "Products", withExtension: "json")
         guard let fileURL = fileURL else{return .failure(FileServiceError.invalidFileURL(url: fileURL?.absoluteString ?? "")) }
