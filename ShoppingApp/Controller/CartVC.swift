@@ -1,0 +1,105 @@
+//
+//  CartVC.swift
+//  ShoppingApp
+//
+//  Created by Sai Balaji on 27/07/24.
+//
+
+import UIKit
+import Combine
+
+class CartVC: UIViewController {
+
+    @IBOutlet weak var totalLbl: UILabel!
+    @IBOutlet weak var subTotalLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    private var vm = CartViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    
+    @IBOutlet weak var billView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configureUI()
+        self.setupBinding()
+        vm.getAllCartItems()
+    }
+    
+    func configureUI(){
+        self.navigationController?.navigationBar.isHidden = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CartItemCell", bundle: nil   ),forCellReuseIdentifier: "CartItemCell")
+        tableView.separatorStyle = .none
+        billView.layer.cornerRadius = 4.0
+    }
+    
+    
+    func setupBinding(){
+        vm.$cartItems.receive(on: RunLoop.main).sink { cartItems in
+            if cartItems.isEmpty == false{
+                var price = 0.0
+                cartItems.forEach { item in
+                    price = price + (item.price * Double(item.quantity))
+                    
+                }
+               
+                self.subTotalLbl.text = "\(price)"
+                self.totalLbl.text = "\(price - 40.0)"
+                self.tableView.reloadData()
+            }
+        }.store(in: &cancellables)
+        vm.$error.receive(on: RunLoop.main).sink { error  in
+            if let error{
+                print(error)
+            }
+        }.store(in: &cancellables)
+    }
+    
+    
+
+    @IBAction func backBtnPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+
+extension CartVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vm.cartItems.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as? CartItemCell{
+            cell.updateCell(imageURL: vm.cartItems[indexPath.row].icon ?? "", title: vm.cartItems[indexPath.row].name ?? "" , quantity: vm.cartItems[indexPath.row].quantity , totalPrice: vm.cartItems[indexPath.row].price)
+            cell.delegate = self
+            cell.index = indexPath
+            return cell
+        }
+        return UITableViewCell()
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150.0
+    }
+}
+
+extension CartVC: CartItemCellDelegate{
+    func plusBtnPressed(quantity: Int, index: IndexPath, totalPrice: String) {
+        self.vm.updateCartItemQuantity(item: self.vm.cartItems[index.row], quantity: Int64(quantity))
+        var finalPrice =  Double(totalPrice)!
+        print("ITEM QUANTITY IS \(quantity) AND PRICE IS \(totalPrice)")
+        self.vm.getAllCartItems()
+       
+       
+    }
+    
+    func minusBtnPressed(quantity: Int, index: IndexPath, totalPrice: String) {
+        self.vm.updateCartItemQuantity(item: self.vm.cartItems[index.row], quantity: Int64(quantity))
+        var finalPrice = Double(quantity) * Double(totalPrice)!
+        print("ITEM QUANTITY IS \(quantity) AND PRICE IS \(totalPrice)")
+        self.vm.getAllCartItems()
+      
+    }
+}

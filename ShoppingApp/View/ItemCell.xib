@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7GN-gj-ewd">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="147"/>
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="144.66666666666666"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dw2-Kd-uhu">
                                 <rect key="frame" x="100" y="8" width="22" height="22"/>
@@ -37,16 +37,16 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sv6-ai-m8g">
-                                <rect key="frame" x="4" y="147" width="122" height="48"/>
+                                <rect key="frame" x="4" y="144.66666666666666" width="122" height="50.333333333333343"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carrot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRm-I3-TPe">
-                                        <rect key="frame" x="0.0" y="0.0" width="122" height="12"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carrot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRm-I3-TPe">
+                                        <rect key="frame" x="0.0" y="0.0" width="122" height="14.333333333333334"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="hBk-Y9-eTl">
-                                        <rect key="frame" x="0.0" y="20" width="122" height="28"/>
+                                        <rect key="frame" x="0.0" y="22.333333333333343" width="122" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="140/Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWU-Sh-Qxy">
                                                 <rect key="frame" x="0.0" y="0.0" width="33.666666666666664" height="28"/>

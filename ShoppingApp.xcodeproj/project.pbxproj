@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E4AF04892C54BB4B00BDC677 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E4AF04882C54BB4B00BDC677 /* SDWebImage */; };
+		E4AF048B2C550F8000BDC677 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF048A2C550F8000BDC677 /* CartVC.swift */; };
+		E4AF048E2C5510D200BDC677 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF048C2C5510D200BDC677 /* CartItemCell.swift */; };
+		E4AF048F2C5510D200BDC677 /* CartItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AF048D2C5510D200BDC677 /* CartItemCell.xib */; };
+		E4AF04912C5512CD00BDC677 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF04902C5512CC00BDC677 /* CartViewModel.swift */; };
 		E4D4CC652C54962900B594B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4CC642C54962900B594B6 /* AppDelegate.swift */; };
 		E4D4CC672C54962900B594B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4CC662C54962900B594B6 /* SceneDelegate.swift */; };
 		E4D4CC692C54962900B594B6 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4CC682C54962900B594B6 /* HomeVC.swift */; };
@@ -27,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E4AF048A2C550F8000BDC677 /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
+		E4AF048C2C5510D200BDC677 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
+		E4AF048D2C5510D200BDC677 /* CartItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemCell.xib; sourceTree = "<group>"; };
+		E4AF04902C5512CC00BDC677 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		E4D4CC612C54962900B594B6 /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4D4CC642C54962900B594B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4D4CC662C54962900B594B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +118,8 @@
 				E4D4CC8B2C54B2BF00B594B6 /* CategoryCell.xib */,
 				E4D4CC8E2C54B47000B594B6 /* ItemCell.swift */,
 				E4D4CC8F2C54B47000B594B6 /* ItemCell.xib */,
+				E4AF048C2C5510D200BDC677 /* CartItemCell.swift */,
+				E4AF048D2C5510D200BDC677 /* CartItemCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -118,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D4CC842C54996200B594B6 /* HomeViewModel.swift */,
+				E4AF04902C5512CC00BDC677 /* CartViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -126,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D4CC682C54962900B594B6 /* HomeVC.swift */,
+				E4AF048A2C550F8000BDC677 /* CartVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -204,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4D4CC8D2C54B2BF00B594B6 /* CategoryCell.xib in Resources */,
+				E4AF048F2C5510D200BDC677 /* CartItemCell.xib in Resources */,
 				E4D4CC742C54962A00B594B6 /* LaunchScreen.storyboard in Resources */,
 				E4D4CC912C54B47000B594B6 /* ItemCell.xib in Resources */,
 				E4D4CC872C549A2300B594B6 /* Products.json in Resources */,
@@ -220,6 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4D4CC692C54962900B594B6 /* HomeVC.swift in Sources */,
+				E4AF048B2C550F8000BDC677 /* CartVC.swift in Sources */,
+				E4AF048E2C5510D200BDC677 /* CartItemCell.swift in Sources */,
+				E4AF04912C5512CD00BDC677 /* CartViewModel.swift in Sources */,
 				E4D4CC6F2C54962900B594B6 /* ShoppingApp.xcdatamodeld in Sources */,
 				E4D4CC852C54996200B594B6 /* HomeViewModel.swift in Sources */,
 				E4D4CC652C54962900B594B6 /* AppDelegate.swift in Sources */,

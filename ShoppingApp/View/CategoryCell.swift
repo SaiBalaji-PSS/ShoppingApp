@@ -22,8 +22,12 @@ class CategoryCell: UITableViewCell {
     var tableViewIndex: IndexPath?
     weak var delegate: CategoryCellDelegate?
     
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var expandView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+      //  self.expandView.isHidden = true
         // Initialization code
         self.itemCollectionView.delegate = self
         self.itemCollectionView.dataSource = self
@@ -37,6 +41,8 @@ class CategoryCell: UITableViewCell {
     }
     
     @IBAction func expandBtnPressed(_ sender: UIButton) {
+        self.expandView.isHidden = true
+        self.heightConstraint.constant = 0.0
     }
     
     func updateCell(title: String,items:[Item]){
@@ -75,6 +81,7 @@ extension CategoryCell: ItemCellDelegate{
         if let tableViewIndex{
      
             self.delegate?.didPressAddBtn(favouriteItem: self.items[indexPath.row])
+           
         }
     }
     func didPressFavouriteBtn(indexPath: IndexPath) {

@@ -62,6 +62,7 @@ class HomeVC: UIViewController {
     }
     
     func configureUI(){
+        self.navigationController?.navigationBar.isHidden = true
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         print(paths[0])
         self.tableView.delegate = self
@@ -69,10 +70,17 @@ class HomeVC: UIViewController {
         self.tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
         self.tableView.separatorStyle = .none
         self.cartView.layer.cornerRadius = 10
+        self.cartView.isUserInteractionEnabled = true
+        self.cartView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cartBtnTapped)))
         
     }
     
     
+    @objc func cartBtnTapped(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
 }
 
@@ -98,8 +106,9 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
+        return UITableView.automaticDimension
     }
+    
 }
 
 extension HomeVC: CategoryCellDelegate{
