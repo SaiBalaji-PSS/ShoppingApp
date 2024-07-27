@@ -14,6 +14,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cartView: UIView!
     
+    @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var cartItemLbl: UILabel!
     
     override func viewDidLoad() {
@@ -21,10 +22,15 @@ class HomeVC: UIViewController {
         // Do any additional setup after loading the view.
       
         self.configureUI()
-        vm.loadAllProducts()
-        self.setupBinding()
-        vm.getAllDatafromCart()
         
+        self.setupBinding()
+       
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        vm.getAllDatafromCart()
+        vm.loadAllProducts()
     }
 
     
@@ -72,12 +78,21 @@ class HomeVC: UIViewController {
         self.cartView.layer.cornerRadius = 10
         self.cartView.isUserInteractionEnabled = true
         self.cartView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cartBtnTapped)))
+        self.favoriteView.isUserInteractionEnabled = true
+        self.favoriteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteBtnPressed)))
         
     }
     
     
     @objc func cartBtnTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
+    @objc func favoriteBtnPressed(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FavoriteVC") as? FavoriteVC{
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -119,5 +134,6 @@ extension HomeVC: CategoryCellDelegate{
     func didPressFavouriteBtn(tableViewIndex: IndexPath, index: IndexPath, likedItem: Item) {
         print("ITEM  \(likedItem.name ?? "") IS \(likedItem.isLiked)")
         self.vm.updateLikeStatus(itemLiked: likedItem, isLiked: likedItem.isLiked)
+        self.vm.addItemToFavorite(itemLiked: likedItem, isLiked: likedItem.isLiked)
     }
 }

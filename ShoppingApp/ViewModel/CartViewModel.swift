@@ -32,4 +32,13 @@ class CartViewModel: ObservableObject{
             self.error = error
         }
     }
+    func removeItemFromCart(item: Cart){
+        DatabaseService.shared.context.delete(item)
+        do{
+            try DatabaseService.shared.context.save()
+        }
+        catch{
+            self.error = error
+        }
+    }
 }

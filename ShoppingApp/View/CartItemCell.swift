@@ -61,8 +61,8 @@ class CartItemCell: UITableViewCell {
         if var quantity = Int(self.quantityLbl.text ?? "0"){
             quantity = quantity - 1
             if quantity <= 0 {
-                self.quantityLbl.text = "1"
-                quantity = 1
+                self.quantityLbl.text = "0"
+                quantity = 0
             }
             else{
                 self.quantityLbl.text = "\(quantity)"

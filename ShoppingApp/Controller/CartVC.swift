@@ -46,8 +46,14 @@ class CartVC: UIViewController {
                
                 self.subTotalLbl.text = "\(price)"
                 self.totalLbl.text = "\(price - 40.0)"
-                self.tableView.reloadData()
+                
             }
+            else{
+                self.subTotalLbl.text = "0.00"
+                self.totalLbl.text = "0.00"
+                
+            }
+            self.tableView.reloadData()
         }.store(in: &cancellables)
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
@@ -88,7 +94,7 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource{
 extension CartVC: CartItemCellDelegate{
     func plusBtnPressed(quantity: Int, index: IndexPath, totalPrice: String) {
         self.vm.updateCartItemQuantity(item: self.vm.cartItems[index.row], quantity: Int64(quantity))
-        var finalPrice =  Double(totalPrice)!
+        
         print("ITEM QUANTITY IS \(quantity) AND PRICE IS \(totalPrice)")
         self.vm.getAllCartItems()
        
@@ -96,10 +102,17 @@ extension CartVC: CartItemCellDelegate{
     }
     
     func minusBtnPressed(quantity: Int, index: IndexPath, totalPrice: String) {
-        self.vm.updateCartItemQuantity(item: self.vm.cartItems[index.row], quantity: Int64(quantity))
-        var finalPrice = Double(quantity) * Double(totalPrice)!
-        print("ITEM QUANTITY IS \(quantity) AND PRICE IS \(totalPrice)")
-        self.vm.getAllCartItems()
+        if quantity <= 0{
+            self.vm.removeItemFromCart(item: self.vm.cartItems[index.row])
+            self.vm.getAllCartItems()
+        }
+        else{
+            self.vm.updateCartItemQuantity(item: self.vm.cartItems[index.row], quantity: Int64(quantity))
+            
+            print("ITEM QUANTITY IS \(quantity) AND PRICE IS \(totalPrice)")
+            self.vm.getAllCartItems()
+        }
+        
       
     }
 }

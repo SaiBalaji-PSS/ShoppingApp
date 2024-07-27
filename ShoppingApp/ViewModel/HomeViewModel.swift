@@ -14,7 +14,7 @@ class HomeViewModel: ObservableObject{
     @Published var carts = [Cart]()
     @Published var error: Error?
     
-    
+    private var favorites = [Favorite]()
     
     func loadAllProducts(){
         //data not in coredata
@@ -102,6 +102,58 @@ class HomeViewModel: ObservableObject{
             self.error = error
             print(error)
         }
+    }
+    func getAllFavorites(){
+        do{
+            let result = DatabaseService.shared.getAllData(fetchRequest: Favorite.fetchRequest())
+            switch result {
+            case .success(let data):
+                self.favorites = data
+            case .failure(let error):
+                self.error = error
+            }
+        }
+        catch{
+            self.error = error
+        }
+    }
+    func addItemToFavorite(itemLiked: Item,isLiked: Bool){
+        self.getAllFavorites()
+        if isLiked == false{
+            //remove from item from favorite core data
+            if let itemToBeRemoved = self.favorites.filter({ item  in
+                (item.id ?? "") == (itemLiked.id ?? "")
+            }).first{
+                DatabaseService.shared.context.delete(itemToBeRemoved)
+                do{
+                    try DatabaseService.shared.context.save()
+                }
+                catch{
+                    self.error = error
+                }
+            }
+            
+        }
+        else{
+            //add it to favorite core data
+            let itemToFavorite = Favorite(context: DatabaseService.shared.context)
+            itemToFavorite.id = itemLiked.id ?? ""
+            itemToFavorite.name = itemLiked.name ?? ""
+            itemToFavorite.price = itemLiked.price
+            itemToFavorite.isLiked = isLiked
+            itemToFavorite.unit = 1
+            itemToFavorite.icon = itemLiked.icon ?? ""
+            do{
+                try DatabaseService.shared.context.save()
+            }
+            catch{
+                self.error = error
+                print(error)
+            }
+        }
+        
+        
+        
     }
     
     

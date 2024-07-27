@@ -78,16 +78,16 @@ extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
 }
 extension CategoryCell: ItemCellDelegate{
     func didPressAddBtn(indexPath: IndexPath) {
-        if let tableViewIndex{
+       
      
             self.delegate?.didPressAddBtn(favouriteItem: self.items[indexPath.row])
            
-        }
+        
     }
     func didPressFavouriteBtn(indexPath: IndexPath) {
         if let tableViewIndex{
             self.items[indexPath.item].isLiked.toggle()
-            print("ITEM IS \(self.items[indexPath.item].name)")
+          //  print("ITEM IS \(self.items[indexPath.item].name)")
             self.itemCollectionView.reloadData()
             self.delegate?.didPressFavouriteBtn(tableViewIndex: tableViewIndex, index: indexPath,likedItem: self.items[indexPath.item])
         }
