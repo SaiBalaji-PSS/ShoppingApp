@@ -17,6 +17,11 @@ class HomeVC: UIViewController {
     @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var cartItemLbl: UILabel!
     
+    private var expandedCells: Set<Int> = []
+    private var selectedIndex = -1
+    private var isCollapse = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -80,6 +85,8 @@ class HomeVC: UIViewController {
         self.cartView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cartBtnTapped)))
         self.favoriteView.isUserInteractionEnabled = true
         self.favoriteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteBtnPressed)))
+//        self.tableView.estimatedRowHeight = 250
+//        self.tableView.rowHeight = UITableView.automaticDimension
         
     }
     
@@ -121,8 +128,23 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+//        if let cell = tableView.cellForRow(at: indexPath) as? CategoryCell{
+//            if self.selectedIndex == indexPath.row && cell.isCollapse == true{
+//                return 250
+//            }
+//            else{
+//                return 60
+//            }
+//        }
+        if expandedCells.contains(indexPath.row) {
+                return 60// Expanded height
+            } else {
+                return 340 // Collapsed height
+        }
+      //  return UITableView.automaticDimension
+       
     }
+    
     
 }
 
@@ -135,5 +157,14 @@ extension HomeVC: CategoryCellDelegate{
         print("ITEM  \(likedItem.name ?? "") IS \(likedItem.isLiked)")
         self.vm.updateLikeStatus(itemLiked: likedItem, isLiked: likedItem.isLiked)
         self.vm.addItemToFavorite(itemLiked: likedItem, isLiked: likedItem.isLiked)
+    }
+    func expandBtnPressed(index: IndexPath) {
+        if expandedCells.contains(index.row) {
+               expandedCells.remove(index.row)
+           } else {
+               expandedCells.insert(index.row)
+           }
+           
+           tableView.reloadRows(at: [index], with: .none)
     }
 }

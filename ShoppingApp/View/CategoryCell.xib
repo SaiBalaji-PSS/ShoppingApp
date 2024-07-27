@@ -80,7 +80,6 @@
                                 <constraints>
                                     <constraint firstItem="ze9-Y9-wn6" firstAttribute="top" secondItem="uO4-lk-WBc" secondAttribute="top" id="Naf-zx-Ipf"/>
                                     <constraint firstAttribute="bottom" secondItem="ze9-Y9-wn6" secondAttribute="bottom" id="ZO0-cS-SZu"/>
-                                    <constraint firstAttribute="height" constant="261" id="eIB-9u-Cvu"/>
                                     <constraint firstItem="ze9-Y9-wn6" firstAttribute="leading" secondItem="uO4-lk-WBc" secondAttribute="leading" constant="8" id="eWu-eP-DTG"/>
                                     <constraint firstAttribute="trailing" secondItem="ze9-Y9-wn6" secondAttribute="trailing" constant="8" id="fph-BO-Su1"/>
                                 </constraints>
@@ -99,7 +98,6 @@
             <connections>
                 <outlet property="expandBtn" destination="qZS-Py-ojt" id="XHy-dn-Nmz"/>
                 <outlet property="expandView" destination="uO4-lk-WBc" id="tWE-o0-aiq"/>
-                <outlet property="heightConstraint" destination="eIB-9u-Cvu" id="Nes-tv-K8q"/>
                 <outlet property="itemCollectionView" destination="ze9-Y9-wn6" id="Q0q-hl-Jm9"/>
                 <outlet property="titleLbl" destination="vwr-Ci-wHZ" id="LvL-A3-aQ6"/>
             </connections>

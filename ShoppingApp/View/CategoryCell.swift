@@ -12,9 +12,10 @@ import UIKit
 protocol CategoryCellDelegate: AnyObject{
     func didPressAddBtn(favouriteItem: Item)
     func didPressFavouriteBtn(tableViewIndex: IndexPath,index: IndexPath,likedItem: Item)
+    func expandBtnPressed(index: IndexPath)
 }
 class CategoryCell: UITableViewCell {
-
+   
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var expandBtn: UIButton!
     @IBOutlet weak var itemCollectionView: UICollectionView!
@@ -22,7 +23,7 @@ class CategoryCell: UITableViewCell {
     var tableViewIndex: IndexPath?
     weak var delegate: CategoryCellDelegate?
     
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+ 
     @IBOutlet weak var expandView: UIView!
     
     override func awakeFromNib() {
@@ -42,13 +43,19 @@ class CategoryCell: UITableViewCell {
     }
     
     @IBAction func expandBtnPressed(_ sender: UIButton) {
-        self.expandView.isHidden = true
-        self.heightConstraint.constant = 0.0
+     
+
+        if let tableViewIndex{
+            self.delegate?.expandBtnPressed(index: tableViewIndex)
+        }
+        
     }
     
     func updateCell(title: String,items:[Item]){
         self.titleLbl.text = title
         self.items = items
+        
+       // self.expandBtn.setImage(self.isCollapse ? UIImage(systemName: "chevron.right") : UIImage(systemName: "chevron.down"), for: .normal)
         self.itemCollectionView.reloadData()
     }
     
