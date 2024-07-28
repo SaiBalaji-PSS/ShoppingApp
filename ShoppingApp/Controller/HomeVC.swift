@@ -78,6 +78,7 @@ class HomeVC: UIViewController {
         self.favoriteView.isUserInteractionEnabled = true
         self.favoriteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteBtnPressed)))
         self.categoryBtn.layer.cornerRadius = 4.0
+        self.customNavBar.applyVerticalGradient(startcolor: UIColor(_colorLiteralRed: 238.0/255.0, green: 165.0/255.0, blue: 82.0/255.0, alpha: 1.0), endcolor: UIColor(_colorLiteralRed: 242.0/255.0, green: 208.0/255.0, blue: 84.0/255.0, alpha: 1.0))
     }
     
     //Navigation to cart and favorite item view controllers
@@ -188,5 +189,33 @@ extension HomeVC: CategoryCellDelegate{
 extension HomeVC: CloseBtnDelegate{
     func closeBtnPressed() {
         self.categoryBtn.isHidden = false
+    }
+}
+
+
+extension UIView
+{
+   public func applyVerticalGradient(startcolor color1: UIColor,endcolor color2: UIColor)
+    {
+        
+        let glayer = CAGradientLayer()
+        glayer.colors = [color1.cgColor,color2.cgColor]
+        
+        glayer.frame = bounds
+        
+        layer.insertSublayer(glayer, at: 0)
+        
+    }
+    
+    
+    public func applyHorizontalGradient(startcolor color1: UIColor,endcolor color2: UIColor)
+    {
+        let glayer = CAGradientLayer()
+        glayer.colors = [color1.cgColor,color2.cgColor]
+        glayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        glayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        glayer.frame = bounds
+        
+        layer.insertSublayer(glayer, at: 0)
     }
 }
