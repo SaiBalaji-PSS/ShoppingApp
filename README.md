@@ -1,5 +1,14 @@
 # ShoppingApp
 
+## Features
+* Expandable table view cells
+* Core data for local data persistence
+* Custom Lottie animations 
+
+## Tech Stack
+* Xcode 15.1
+* Swift Package manager - Lottie iOS SDK, SDWebImage
+* UIKit, Combine, MVVM
 
 # Screen Shots
 
