@@ -10,6 +10,7 @@ import UIKit
 protocol CloseBtnDelegate: AnyObject{
     func closeBtnPressed()
 }
+//Custom popup for category list
 class CategoriesPopupVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!

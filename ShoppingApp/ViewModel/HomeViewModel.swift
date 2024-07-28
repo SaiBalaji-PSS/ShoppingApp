@@ -10,6 +10,7 @@ import Combine
 
 
 class HomeViewModel: ObservableObject{
+    //MARK: - PROPERTIES
     @Published var categories = [Category]()
     @Published var carts = [Cart]()
     @Published var error: Error?
@@ -17,18 +18,28 @@ class HomeViewModel: ObservableObject{
     private var favorites = [Favorite]()
     
     func loadAllProducts(){
-        //data not in coredata
-        if DatabaseService.shared.isCoreDataEmpty(){
+        //if data is not in coredata
+        if self.isCoreDataEmpty(){
             //load from json and save to coredata and read from core data
             self.getAllProductsFromJSON()
         }
-        //data in coredata
+        //if data is in coredata
         else{
             //only read from coredata
             self.getAllProductsFromCoreData()
         }
     }
     
+    //Check if the core data is empty with no category data
+    func isCoreDataEmpty() -> Bool{
+        if let categories = try? DatabaseService.shared.context.fetch(Category.fetchRequest()){
+            return categories.isEmpty
+        }
+        
+        return true
+    }
+    
+    //Load the JSON file -> Parse it -> Save it to the core data
     func getAllProductsFromJSON(){
         let result = FileService.shared.loadJSONFile(responseType: ResponseModel.Root.self)
         switch result {
@@ -49,6 +60,7 @@ class HomeViewModel: ObservableObject{
         }
     }
     
+    //Get the saved products from core data
     func getAllProductsFromCoreData(){
         let result = DatabaseService.shared.getAllData(fetchRequest: Category.fetchRequest())
         switch result {
@@ -63,7 +75,9 @@ class HomeViewModel: ObservableObject{
         }
     }
     
+    //Save the item to the cart
     func saveItemToCart(id: String,name: String,units: Int,imageURL: String,price: String){
+        //If  the item is in cart then update its quantity of the item alone
         if let cartItemToBeUpdated = self.carts.filter({ cartItem in
             (cartItem.id ?? "") == id
         }).first{
@@ -72,6 +86,7 @@ class HomeViewModel: ObservableObject{
             print("UPDATE DATA")
             DatabaseService.shared.updateCartItemQuantity(cartItemToBeUpdated: cartItemToBeUpdated)
         }
+        //If the item is not in cart then save it to the cart
         else{
             DatabaseService.shared.saveItemsToCart(id: id, name: name, units: units, imageURL: imageURL, price: price)
             
@@ -79,7 +94,7 @@ class HomeViewModel: ObservableObject{
         self.getAllDatafromCart()
       
     }
-    
+    //Get all the data from cart
     func getAllDatafromCart(){
         let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         let result = DatabaseService.shared.getAllData(fetchRequest: Cart.fetchRequest(),sortDescriptors: [sortDescriptor])
@@ -92,7 +107,7 @@ class HomeViewModel: ObservableObject{
             break
         }
     }
-    
+    //Update the like status of the item
     func updateLikeStatus(itemLiked: Item,isLiked: Bool){
         itemLiked.isLiked = isLiked
         do{
@@ -104,8 +119,8 @@ class HomeViewModel: ObservableObject{
             print(error)
         }
     }
+    //Get all the favorite from core data
     func getAllFavorites(){
-        do{
             let result = DatabaseService.shared.getAllData(fetchRequest: Favorite.fetchRequest())
             switch result {
             case .success(let data):
@@ -113,15 +128,12 @@ class HomeViewModel: ObservableObject{
             case .failure(let error):
                 self.error = error
             }
-        }
-        catch{
-            self.error = error
-        }
     }
+    //Add the item to favorite
     func addItemToFavorite(itemLiked: Item,isLiked: Bool){
         self.getAllFavorites()
         if isLiked == false{
-            //remove from item from favorite core data
+            //remove from item from favorite core data if the item is disliked
             if let itemToBeRemoved = self.favorites.filter({ item  in
                 (item.id ?? "") == (itemLiked.id ?? "")
             }).first{
@@ -136,7 +148,7 @@ class HomeViewModel: ObservableObject{
             
         }
         else{
-            //add it to favorite core data
+            //add it to favorite core data if the item is liked
             let itemToFavorite = Favorite(context: DatabaseService.shared.context)
             itemToFavorite.id = itemLiked.id ?? ""
             itemToFavorite.name = itemLiked.name ?? ""

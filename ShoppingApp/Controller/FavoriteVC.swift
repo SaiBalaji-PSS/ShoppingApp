@@ -10,10 +10,12 @@ import Combine
 
 
 class FavoriteVC: UIViewController {
+    //MARK: - PROPERTIES
     @IBOutlet weak var tableView: UITableView!
     var vm = FavoriteViewModel()
     private var cancellables = Set<AnyCancellable>()
     
+    //MARK: - LIFECYCLE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,8 @@ class FavoriteVC: UIViewController {
         
     }
     
+    //MARK: - HELPERS
+    //Setup tableview
     func configureUI(){
         self.navigationController?.navigationBar.isHidden = true
         self.tableView.delegate = self
@@ -32,13 +36,15 @@ class FavoriteVC: UIViewController {
         self.tableView.separatorStyle = .none
     }
     
-    
+    //Setup binding between view and view model
     func setupBiding(){
+        //Get all the items from favorite list
         vm.$favoriteItems.receive(on: RunLoop.main).sink { favoriteItems in
-            if favoriteItems.isEmpty == false{
+           
                 self.tableView.reloadData()
-            }
+            
         }.store(in: &cancellables)
+        //Display error
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
                 print(error)
@@ -53,7 +59,7 @@ class FavoriteVC: UIViewController {
 }
 
 
-
+//MARK: - TABLEVIEW DELEGATE METHODS
 extension FavoriteVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vm.favoriteItems.count
@@ -73,6 +79,7 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+//Update the item unit count in favorite entity
 extension FavoriteVC: FavoriteCellDelegate{
     func addBtnPressed(index: IndexPath, unit: Int, item: Favorite, price: Double) {
         self.vm.updateItemUnitCount(item: item, unit: unit,price: price)

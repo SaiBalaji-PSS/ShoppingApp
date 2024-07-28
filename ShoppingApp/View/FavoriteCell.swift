@@ -12,18 +12,19 @@ protocol FavoriteCellDelegate: AnyObject{
 }
 
 class FavoriteCell: UITableViewCell {
-    weak var delegate: FavoriteCellDelegate?
+    
+    //MARK: - PROPERTIES
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var itemNameLbl: UILabel!
     @IBOutlet weak var unitNameLbl: UILabel!
     @IBOutlet weak var favoriteBtn: UIButton!
-    
     @IBOutlet weak var bgView: UIView!
+    
     var index = IndexPath()
     private var currentPirce = 0.0
     private var currentUnit = 0
     private var currentItem: Favorite?
-    
+    weak var delegate: FavoriteCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +34,7 @@ class FavoriteCell: UITableViewCell {
         bgView.dropShadow(scale: true)
       
     }
+    
     
     func updateData(item: Favorite){
         self.currentItem = item
@@ -46,7 +48,9 @@ class FavoriteCell: UITableViewCell {
     }
     
     
+    
     @IBAction func addBtnPressed(_ sender: Any) {
+        //Increment the quantity of item and calculate the updated price for the item
         currentUnit = currentUnit + 1
         let updatedPrice = Double(currentUnit) * currentPirce
         self.unitNameLbl.text = "Unit: \(currentUnit)  \(String(format: "$ %.2f", updatedPrice))"

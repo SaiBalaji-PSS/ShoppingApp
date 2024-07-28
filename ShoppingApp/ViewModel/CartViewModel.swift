@@ -9,8 +9,12 @@ import Foundation
 import Combine
 
 class CartViewModel: ObservableObject{
+    //MARK: - PROPERTIES
     @Published var cartItems = [Cart]()
     @Published var error: Error?
+    
+    
+    //Get all the items from the cart
     func getAllCartItems(){
         let result = DatabaseService.shared.getAllData(fetchRequest: Cart.fetchRequest())
         switch result {
@@ -22,6 +26,7 @@ class CartViewModel: ObservableObject{
             break
         }
     }
+    //Update the item quantity in coredata
     func updateCartItemQuantity(item: Cart,quantity: Int64){
         
         item.quantity = quantity
@@ -32,6 +37,7 @@ class CartViewModel: ObservableObject{
             self.error = error
         }
     }
+    //Remove the item from the core data
     func removeItemFromCart(item: Cart){
         DatabaseService.shared.context.delete(item)
         do{

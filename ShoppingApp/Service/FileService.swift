@@ -10,7 +10,14 @@ import Foundation
 enum FileServiceError: Error{
     case invalidFileURL(url: String)
 }
-
+extension FileServiceError: LocalizedError{
+    var errorDescription: String?{
+        switch self {
+        case .invalidFileURL(let url):
+            return "The given file url is invalid"
+        }
+    }
+}
 class FileService{
     static var shared = FileService()
     private init(){}

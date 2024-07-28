@@ -8,9 +8,11 @@
 import UIKit
 import Lottie
 
+
+//Custom popup to display the animation
 class AnimationPopUp: UIViewController {
 
- 
+    //MARK: - PROPERTIES
     @IBOutlet weak var messageLbl: UILabel!
     @IBOutlet weak var customAnimationView: UIView!
     private var animationView: LottieAnimationView?
@@ -18,6 +20,7 @@ class AnimationPopUp: UIViewController {
     var messageText = ""
     var speed: CGFloat?
     
+    //MARK: - LIFECYCLE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,6 +54,7 @@ class AnimationPopUp: UIViewController {
             animationView?.animationSpeed = speed ?? 1.0
             animationView?.play(completion: { completed in
                 if completed{
+                    //dismiss the popup after animation is completed 
                     self.dismiss(animated: true)
                 }
             })

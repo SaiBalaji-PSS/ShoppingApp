@@ -62,9 +62,6 @@
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
-                                                <connections>
-                                                    <action selector="favoriteBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P0I-uj-c4q"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s60-AW-K6d">
                                                 <rect key="frame" x="0.0" y="36" width="49" height="34"/>

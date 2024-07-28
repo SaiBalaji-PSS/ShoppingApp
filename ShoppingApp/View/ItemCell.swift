@@ -8,13 +8,13 @@
 import UIKit
 import SDWebImage
 
-
+//Protocol for favorite button action, add button action
 protocol ItemCellDelegate: AnyObject{
     func didPressFavouriteBtn(indexPath: IndexPath)
     func didPressAddBtn(indexPath: IndexPath)
 }
 class ItemCell: UICollectionViewCell {
-    weak var delegate: ItemCellDelegate?
+    //MARK: - PROPERTIES
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
@@ -22,12 +22,11 @@ class ItemCell: UICollectionViewCell {
     @IBOutlet weak var favouriteBtnPressed: UIButton!
     
     var indexPath: IndexPath?
+    weak var delegate: ItemCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
     }
 
     func updateCell(itemName: String,price: String,imageURL: String,isLiked: Bool){

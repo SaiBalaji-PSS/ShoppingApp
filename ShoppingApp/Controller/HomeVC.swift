@@ -9,31 +9,26 @@ import UIKit
 import Combine
 
 class HomeVC: UIViewController {
+    //MARK: - PROPERTIES
+    
     private var vm = HomeViewModel()
     private var cancellables = Set<AnyCancellable>()
+    private var expandedCells: Set<Int> = []
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cartView: UIView!
-    
     @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var cartItemLbl: UILabel!
-    
-    private var expandedCells: Set<Int> = []
-    private var selectedIndex = -1
-    private var isCollapse = false
-    
     @IBOutlet weak var customNavBar: UIView!
-    
     @IBOutlet weak var categoryBtn: UIButton!
     
+    //MARK: - LIFECYCLE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         self.configureUI()
-        
         self.setupBinding()
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,25 +37,17 @@ class HomeVC: UIViewController {
     }
     
     
+    //MARK: - HELPERS
+    
+    //Setup binding between view and view model
     func setupBinding(){
+        
         vm.$categories.receive(on: RunLoop.main).sink { cateogories in
             print(cateogories.count)
-            if cateogories.isEmpty == false{
-                //  DatabaseService.shared.saveData(categories: cateogories)
-                cateogories.forEach { category  in
-                    print("Category is \(category.name ?? "")")
-                    if let items = category.items?.allObjects as? [Item]{
-                        print("Items are: \n")
-                        items.forEach { item  in
-                            
-                            print(item.id ?? "")
-                        }
-                    }
-                }
-                self.tableView.reloadData()
-            }
-            
+            self.tableView.reloadData()
         }.store(in: &cancellables)
+        
+        //get all the cart items and calculate the total units in the cart
         vm.$carts.receive(on: RunLoop.main).sink { cartItems  in
             var totalCount = 0
             cartItems.forEach { cartItem in
@@ -68,6 +55,8 @@ class HomeVC: UIViewController {
             }
             self.cartItemLbl.text = "\(totalCount)"
         }.store(in: &cancellables)
+        
+        //show error
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
                 print(error)
@@ -76,11 +65,9 @@ class HomeVC: UIViewController {
     }
     
    
-    
+    //Configure tableview  and gesture recognizers
     func configureUI(){
         self.navigationController?.navigationBar.isHidden = true
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        print(paths[0])
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
@@ -91,16 +78,9 @@ class HomeVC: UIViewController {
         self.favoriteView.isUserInteractionEnabled = true
         self.favoriteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteBtnPressed)))
         self.categoryBtn.layer.cornerRadius = 4.0
-        
-        
-      
-
-                
-   
-        
     }
     
-    
+    //Navigation to cart and favorite item view controllers
     @objc func cartBtnTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartVC") as? CartVC{
             self.navigationController?.pushViewController(vc, animated: true)
@@ -114,6 +94,7 @@ class HomeVC: UIViewController {
         }
     }
     
+    //Display category popup
     @IBAction func categoryBtnPressed(_ sender: Any) {
         var categoryPopUp = CategoriesPopupVC()
         categoryPopUp.delegate = self 
@@ -124,6 +105,7 @@ class HomeVC: UIViewController {
         self.categoryBtn.isHidden = true
     }
     
+    //Show animation popup for given animation and message
     func showAnimationPopUp(name: String,message: String,speed: CGFloat){
         let animationPopUp = AnimationPopUp()
         animationPopUp.animationName = name
@@ -135,7 +117,7 @@ class HomeVC: UIViewController {
 
 
 
-
+//MARK: - TABLE VIEW DELEGATE METHODS
 extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.vm.categories.count
@@ -154,6 +136,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         return UITableViewCell()
         
     }
+    //Expand and collapse the table view cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if expandedCells.contains(indexPath.row) {
@@ -170,6 +153,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
 
 extension HomeVC: CategoryCellDelegate{
     func didPressAddBtn(favouriteItem: Item) {
+        //Add the item to cart in coredata and show the animation
         self.vm.saveItemToCart(id: favouriteItem.id ?? "", name: favouriteItem.name ?? "",units: 1, imageURL: favouriteItem.icon ?? "", price: "\(favouriteItem.price)")
         
         self.showAnimationPopUp(name: "cart", message: "Item added to shopping cart",speed: 2.0)
@@ -177,13 +161,16 @@ extension HomeVC: CategoryCellDelegate{
     
     func didPressFavouriteBtn(tableViewIndex: IndexPath, index: IndexPath, likedItem: Item) {
         print("ITEM  \(likedItem.name ?? "") IS \(likedItem.isLiked)")
+        //Update the isLiked attribute of the item in core data and add it to the favorite enitiy
         self.vm.updateLikeStatus(itemLiked: likedItem, isLiked: likedItem.isLiked)
         self.vm.addItemToFavorite(itemLiked: likedItem, isLiked: likedItem.isLiked)
         if likedItem.isLiked{
+            //show like animation
             self.showAnimationPopUp(name: "like", message: "Item added to favorite list",speed: 1.0)
         }
     }
     func expandBtnPressed(index: IndexPath) {
+        //Expand and collapse the table view cell
         if expandedCells.contains(index.row) {
             expandedCells.remove(index.row)
         } else {
@@ -195,6 +182,9 @@ extension HomeVC: CategoryCellDelegate{
     }
 }
 
+
+
+//Show the category button when the cateogry popup is closed
 extension HomeVC: CloseBtnDelegate{
     func closeBtnPressed() {
         self.categoryBtn.isHidden = false

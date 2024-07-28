@@ -7,6 +7,7 @@
 
 import UIKit
 
+//Protocol for plus btn action and minus btn action
 protocol CartItemCellDelegate: AnyObject{
     func plusBtnPressed(quantity: Int,index: IndexPath,totalPrice: String)
     func minusBtnPressed(quantity: Int,index: IndexPath,totalPrice: String)
@@ -15,15 +16,16 @@ protocol CartItemCellDelegate: AnyObject{
 class CartItemCell: UITableViewCell {
 
     
-    weak var delegate: CartItemCellDelegate?
+   //MARK: - PROPERTIES
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var quantityLbl: UILabel!
     @IBOutlet weak var totalPriceLbl: UILabel!
-    
     @IBOutlet weak var bgView: UIView!
+    
     private var totalPrice = 0.0
     var index: IndexPath = IndexPath()
+    weak var delegate: CartItemCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

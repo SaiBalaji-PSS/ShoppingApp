@@ -12,6 +12,7 @@ import CoreData
 class DatabaseService{
     static var shared = DatabaseService()
     private init(){}
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func saveData(categories: [ResponseModel.Category],onCompletion:@escaping(Error?)->(Void)){
@@ -55,13 +56,7 @@ class DatabaseService{
         
     }
     
-    func isCoreDataEmpty() -> Bool{
-        if let categories = try? context.fetch(Category.fetchRequest()){
-            return categories.isEmpty
-        }
-        
-        return true
-    }
+  
     
     func saveItemsToCart(id: String,name: String,units: Int,imageURL: String,price: String){
         let itemToBeSavedToCart = Cart(context: self.context)
