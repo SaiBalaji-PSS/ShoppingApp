@@ -40,7 +40,7 @@ class FavoriteCell: UITableViewCell {
         self.currentUnit = Int(item.unit)
         self.iconImageView.sd_setImage(with: URL(string: item.icon ?? ""))
         self.itemNameLbl.text = item.name
-        self.unitNameLbl.text = "Unit: \(item.unit)  $ \(item.price)"
+        self.unitNameLbl.text = "Unit: \(item.unit)   \(String(format: "$ %.2f", item.price))"
         self.favoriteBtn.setImage(item.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
         
     }
@@ -49,7 +49,7 @@ class FavoriteCell: UITableViewCell {
     @IBAction func addBtnPressed(_ sender: Any) {
         currentUnit = currentUnit + 1
         let updatedPrice = Double(currentUnit) * currentPirce
-        self.unitNameLbl.text = "\(currentUnit) \(updatedPrice)"
+        self.unitNameLbl.text = "Unit: \(currentUnit)  \(String(format: "$ %.2f", updatedPrice))"
         if let currentItem{
             self.delegate?.addBtnPressed(index: index, unit: currentUnit, item: currentItem, price: currentPirce)
         }

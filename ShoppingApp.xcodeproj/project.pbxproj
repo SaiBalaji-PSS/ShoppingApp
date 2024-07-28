@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		E487C7172C56114A00785D2E /* CategoriesPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E487C7152C56114A00785D2E /* CategoriesPopupVC.swift */; };
 		E487C7182C56114A00785D2E /* CategoriesPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E487C7162C56114A00785D2E /* CategoriesPopupVC.xib */; };
+		E487C71B2C561C2800785D2E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E487C71A2C561C2800785D2E /* Lottie */; };
+		E487C7202C561CDC00785D2E /* AnimationPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E487C71E2C561CDC00785D2E /* AnimationPopUp.swift */; };
+		E487C7212C561CDC00785D2E /* AnimationPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = E487C71F2C561CDC00785D2E /* AnimationPopUp.xib */; };
+		E487C7232C56204500785D2E /* bag.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C7222C56204500785D2E /* bag.json */; };
+		E487C7272C56228700785D2E /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C7262C56228700785D2E /* cart.json */; };
+		E487C7292C56240100785D2E /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C7282C56240100785D2E /* like.json */; };
+		E487C72B2C56266B00785D2E /* checkout.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C72A2C56266B00785D2E /* checkout.json */; };
 		E4AF04892C54BB4B00BDC677 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E4AF04882C54BB4B00BDC677 /* SDWebImage */; };
 		E4AF048B2C550F8000BDC677 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF048A2C550F8000BDC677 /* CartVC.swift */; };
 		E4AF048E2C5510D200BDC677 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF048C2C5510D200BDC677 /* CartItemCell.swift */; };
@@ -39,6 +46,12 @@
 /* Begin PBXFileReference section */
 		E487C7152C56114A00785D2E /* CategoriesPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPopupVC.swift; sourceTree = "<group>"; };
 		E487C7162C56114A00785D2E /* CategoriesPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesPopupVC.xib; sourceTree = "<group>"; };
+		E487C71E2C561CDC00785D2E /* AnimationPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPopUp.swift; sourceTree = "<group>"; };
+		E487C71F2C561CDC00785D2E /* AnimationPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimationPopUp.xib; sourceTree = "<group>"; };
+		E487C7222C56204500785D2E /* bag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bag.json; sourceTree = "<group>"; };
+		E487C7262C56228700785D2E /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
+		E487C7282C56240100785D2E /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
+		E487C72A2C56266B00785D2E /* checkout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkout.json; sourceTree = "<group>"; };
 		E4AF048A2C550F8000BDC677 /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		E4AF048C2C5510D200BDC677 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		E4AF048D2C5510D200BDC677 /* CartItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemCell.xib; sourceTree = "<group>"; };
@@ -73,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4AF04892C54BB4B00BDC677 /* SDWebImage in Frameworks */,
+				E487C71B2C561C2800785D2E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +112,10 @@
 		E4D4CC632C54962900B594B6 /* ShoppingApp */ = {
 			isa = PBXGroup;
 			children = (
+				E487C72A2C56266B00785D2E /* checkout.json */,
+				E487C7282C56240100785D2E /* like.json */,
+				E487C7262C56228700785D2E /* cart.json */,
+				E487C7222C56204500785D2E /* bag.json */,
 				E4D4CC862C549A2300B594B6 /* Products.json */,
 				E4D4CC7F2C54977400B594B6 /* Service */,
 				E4D4CC7E2C54976F00B594B6 /* Controller */,
@@ -136,6 +154,8 @@
 				E4AF04972C5539CE00BDC677 /* FavoriteCell.xib */,
 				E487C7152C56114A00785D2E /* CategoriesPopupVC.swift */,
 				E487C7162C56114A00785D2E /* CategoriesPopupVC.xib */,
+				E487C71E2C561CDC00785D2E /* AnimationPopUp.swift */,
+				E487C71F2C561CDC00785D2E /* AnimationPopUp.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +207,7 @@
 			name = ShoppingApp;
 			packageProductDependencies = (
 				E4AF04882C54BB4B00BDC677 /* SDWebImage */,
+				E487C71A2C561C2800785D2E /* Lottie */,
 			);
 			productName = ShoppingApp;
 			productReference = E4D4CC612C54962900B594B6 /* ShoppingApp.app */;
@@ -218,6 +239,7 @@
 			mainGroup = E4D4CC582C54962900B594B6;
 			packageReferences = (
 				E4AF04872C54BB4B00BDC677 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				E487C7192C561C2800785D2E /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = E4D4CC622C54962900B594B6 /* Products */;
 			projectDirPath = "";
@@ -234,10 +256,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E487C7182C56114A00785D2E /* CategoriesPopupVC.xib in Resources */,
+				E487C7212C561CDC00785D2E /* AnimationPopUp.xib in Resources */,
+				E487C7232C56204500785D2E /* bag.json in Resources */,
+				E487C7272C56228700785D2E /* cart.json in Resources */,
 				E4D4CC8D2C54B2BF00B594B6 /* CategoryCell.xib in Resources */,
 				E4AF04992C5539CE00BDC677 /* FavoriteCell.xib in Resources */,
 				E4AF048F2C5510D200BDC677 /* CartItemCell.xib in Resources */,
+				E487C72B2C56266B00785D2E /* checkout.json in Resources */,
 				E4D4CC742C54962A00B594B6 /* LaunchScreen.storyboard in Resources */,
+				E487C7292C56240100785D2E /* like.json in Resources */,
 				E4D4CC912C54B47000B594B6 /* ItemCell.xib in Resources */,
 				E4D4CC872C549A2300B594B6 /* Products.json in Resources */,
 				E4D4CC712C54962A00B594B6 /* Assets.xcassets in Resources */,
@@ -255,6 +282,7 @@
 				E4D4CC692C54962900B594B6 /* HomeVC.swift in Sources */,
 				E4AF048B2C550F8000BDC677 /* CartVC.swift in Sources */,
 				E4AF048E2C5510D200BDC677 /* CartItemCell.swift in Sources */,
+				E487C7202C561CDC00785D2E /* AnimationPopUp.swift in Sources */,
 				E4AF04952C5534C400BDC677 /* FavoriteViewModel.swift in Sources */,
 				E4AF04912C5512CD00BDC677 /* CartViewModel.swift in Sources */,
 				E4D4CC6F2C54962900B594B6 /* ShoppingApp.xcdatamodeld in Sources */,
@@ -491,6 +519,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E487C7192C561C2800785D2E /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
 		E4AF04872C54BB4B00BDC677 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -502,6 +538,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E487C71A2C561C2800785D2E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E487C7192C561C2800785D2E /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		E4AF04882C54BB4B00BDC677 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E4AF04872C54BB4B00BDC677 /* XCRemoteSwiftPackageReference "SDWebImage" */;

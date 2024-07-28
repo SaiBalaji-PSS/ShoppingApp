@@ -123,6 +123,14 @@ class HomeVC: UIViewController {
         })
         self.categoryBtn.isHidden = true
     }
+    
+    func showAnimationPopUp(name: String,message: String,speed: CGFloat){
+        let animationPopUp = AnimationPopUp()
+        animationPopUp.animationName = name
+        animationPopUp.messageText = message
+        animationPopUp.speed = speed
+        animationPopUp.show()
+    }
 }
 
 
@@ -163,12 +171,17 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
 extension HomeVC: CategoryCellDelegate{
     func didPressAddBtn(favouriteItem: Item) {
         self.vm.saveItemToCart(id: favouriteItem.id ?? "", name: favouriteItem.name ?? "",units: 1, imageURL: favouriteItem.icon ?? "", price: "\(favouriteItem.price)")
+        
+        self.showAnimationPopUp(name: "cart", message: "Item added to shopping cart",speed: 2.0)
     }
     
     func didPressFavouriteBtn(tableViewIndex: IndexPath, index: IndexPath, likedItem: Item) {
         print("ITEM  \(likedItem.name ?? "") IS \(likedItem.isLiked)")
         self.vm.updateLikeStatus(itemLiked: likedItem, isLiked: likedItem.isLiked)
         self.vm.addItemToFavorite(itemLiked: likedItem, isLiked: likedItem.isLiked)
+        if likedItem.isLiked{
+            self.showAnimationPopUp(name: "like", message: "Item added to favorite list",speed: 1.0)
+        }
     }
     func expandBtnPressed(index: IndexPath) {
         if expandedCells.contains(index.row) {

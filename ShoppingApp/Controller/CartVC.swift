@@ -10,12 +10,14 @@ import Combine
 
 class CartVC: UIViewController {
 
+    @IBOutlet weak var checkoutBtn: UIButton!
     @IBOutlet weak var totalLbl: UILabel!
     @IBOutlet weak var subTotalLbl: UILabel!
+    @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     private var vm = CartViewModel()
     private var cancellables = Set<AnyCancellable>()
-    
+    private var discountAmount = 40.0
     @IBOutlet weak var billView: UIView!
     
     override func viewDidLoad() {
@@ -32,6 +34,8 @@ class CartVC: UIViewController {
         tableView.register(UINib(nibName: "CartItemCell", bundle: nil   ),forCellReuseIdentifier: "CartItemCell")
         tableView.separatorStyle = .none
         billView.layer.cornerRadius = 4.0
+        self.checkoutBtn.layer.cornerRadius = 4.0
+        self.discountLbl.text = "-$ \(discountAmount)"
     }
     
     
@@ -44,14 +48,17 @@ class CartVC: UIViewController {
                     
                 }
                
-                self.subTotalLbl.text = "\(price)"
-                self.totalLbl.text = "\(price - 40.0)"
-                
+                self.subTotalLbl.text = "\(String(format:"$%.2f",price))"
+                self.totalLbl.text = "\(String(format:"$%.2f",price - self.discountAmount))"
+                self.billView.isHidden = false
+                self.checkoutBtn.isHidden = false
             }
             else{
-                self.subTotalLbl.text = "0.00"
-                self.totalLbl.text = "0.00"
-                
+                self.subTotalLbl.text = "$0.00"
+                self.totalLbl.text = "$0.00"
+              //  self.discountLbl.text = "$0.00"
+                self.billView.isHidden = true
+                self.checkoutBtn.isHidden = true
             }
             self.tableView.reloadData()
         }.store(in: &cancellables)
@@ -64,6 +71,13 @@ class CartVC: UIViewController {
     
     
 
+    @IBAction func checkoutBtnPressed(_ sender: Any) {
+        let animationVC = AnimationPopUp()
+        animationVC.speed = 2
+        animationVC.animationName = "checkout"
+        animationVC.messageText = "Checkout Success"
+        animationVC.show()
+    }
     @IBAction func backBtnPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

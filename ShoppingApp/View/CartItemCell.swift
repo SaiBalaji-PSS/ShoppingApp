@@ -44,7 +44,9 @@ class CartItemCell: UITableViewCell {
         self.titleLbl.text = title
         self.iconImageView.sd_setImage(with: URL(string: imageURL))
         self.quantityLbl.text = "\(quantity)"
-        self.totalPriceLbl.text = "\(totalPrice * Double(quantity))"
+        self.totalPriceLbl.text = "\(String(format:"$%.2f",totalPrice * Double(quantity)))"
+        
+        
          
     }
     
