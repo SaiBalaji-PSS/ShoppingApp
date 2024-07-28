@@ -75,6 +75,7 @@ extension CategoriesPopupVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CELL", for: indexPath)
         cell.textLabel?.text = data[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Avenir Next", size: 14.0)
         return cell
     }
 }

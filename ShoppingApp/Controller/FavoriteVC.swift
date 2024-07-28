@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 
-class FavoriteVC: UIViewController {
+class FavoriteVC: BaseVC {
     //MARK: - PROPERTIES
     @IBOutlet weak var tableView: UITableView!
     var vm = FavoriteViewModel()
@@ -48,6 +48,7 @@ class FavoriteVC: UIViewController {
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
                 print(error)
+                self.showAlert(title: "Error", message: error.localizedDescription)
             }
         }.store(in: &cancellables)
     }

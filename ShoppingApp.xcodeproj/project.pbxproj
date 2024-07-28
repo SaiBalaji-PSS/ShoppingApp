@@ -16,6 +16,7 @@
 		E487C7272C56228700785D2E /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C7262C56228700785D2E /* cart.json */; };
 		E487C7292C56240100785D2E /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C7282C56240100785D2E /* like.json */; };
 		E487C72B2C56266B00785D2E /* checkout.json in Resources */ = {isa = PBXBuildFile; fileRef = E487C72A2C56266B00785D2E /* checkout.json */; };
+		E487C72D2C564B4800785D2E /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E487C72C2C564B4800785D2E /* BaseVC.swift */; };
 		E4AF04892C54BB4B00BDC677 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E4AF04882C54BB4B00BDC677 /* SDWebImage */; };
 		E4AF048B2C550F8000BDC677 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF048A2C550F8000BDC677 /* CartVC.swift */; };
 		E4AF048E2C5510D200BDC677 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF048C2C5510D200BDC677 /* CartItemCell.swift */; };
@@ -52,6 +53,7 @@
 		E487C7262C56228700785D2E /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
 		E487C7282C56240100785D2E /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
 		E487C72A2C56266B00785D2E /* checkout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkout.json; sourceTree = "<group>"; };
+		E487C72C2C564B4800785D2E /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		E4AF048A2C550F8000BDC677 /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		E4AF048C2C5510D200BDC677 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		E4AF048D2C5510D200BDC677 /* CartItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemCell.xib; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				E4D4CC682C54962900B594B6 /* HomeVC.swift */,
 				E4AF048A2C550F8000BDC677 /* CartVC.swift */,
 				E4AF04922C55338100BDC677 /* FavoriteVC.swift */,
+				E487C72C2C564B4800785D2E /* BaseVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				E4AF048B2C550F8000BDC677 /* CartVC.swift in Sources */,
 				E4AF048E2C5510D200BDC677 /* CartItemCell.swift in Sources */,
 				E487C7202C561CDC00785D2E /* AnimationPopUp.swift in Sources */,
+				E487C72D2C564B4800785D2E /* BaseVC.swift in Sources */,
 				E4AF04952C5534C400BDC677 /* FavoriteViewModel.swift in Sources */,
 				E4AF04912C5512CD00BDC677 /* CartViewModel.swift in Sources */,
 				E4D4CC6F2C54962900B594B6 /* ShoppingApp.xcdatamodeld in Sources */,

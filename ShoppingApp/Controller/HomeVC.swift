@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class HomeVC: UIViewController {
+class HomeVC: BaseVC {
     //MARK: - PROPERTIES
     
     private var vm = HomeViewModel()
@@ -34,6 +34,13 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         vm.getAllDatafromCart()
         vm.loadAllProducts()
+        expandedCells.removeAll()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.setupNavBarGradient()
     }
     
     
@@ -60,11 +67,16 @@ class HomeVC: UIViewController {
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
                 print(error)
+                self.showAlert(title: "Error", message: error.localizedDescription)
             }
         }.store(in: &cancellables)
     }
     
-   
+    func setupNavBarGradient(){
+        self.customNavBar.applyVerticalGradient(startcolor: UIColor(_colorLiteralRed: 238.0/255.0, green: 165.0/255.0, blue: 82.0/255.0, alpha: 1.0), endcolor: UIColor(_colorLiteralRed: 242.0/255.0, green: 208.0/255.0, blue: 84.0/255.0, alpha: 1.0))
+        self.customNavBar.layer.cornerRadius = 15.0
+        self.customNavBar.layer.masksToBounds = true
+    }
     //Configure tableview  and gesture recognizers
     func configureUI(){
         self.navigationController?.navigationBar.isHidden = true
@@ -78,7 +90,7 @@ class HomeVC: UIViewController {
         self.favoriteView.isUserInteractionEnabled = true
         self.favoriteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteBtnPressed)))
         self.categoryBtn.layer.cornerRadius = 4.0
-        self.customNavBar.applyVerticalGradient(startcolor: UIColor(_colorLiteralRed: 238.0/255.0, green: 165.0/255.0, blue: 82.0/255.0, alpha: 1.0), endcolor: UIColor(_colorLiteralRed: 242.0/255.0, green: 208.0/255.0, blue: 84.0/255.0, alpha: 1.0))
+     
     }
     
     //Navigation to cart and favorite item view controllers
