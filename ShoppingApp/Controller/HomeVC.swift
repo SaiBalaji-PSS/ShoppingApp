@@ -214,7 +214,9 @@ extension UIView
         glayer.colors = [color1.cgColor,color2.cgColor]
         
         glayer.frame = bounds
-        
+        layer.sublayers?.forEach({ layer in
+            (layer as? CAGradientLayer)?.removeFromSuperlayer()
+        })
         layer.insertSublayer(glayer, at: 0)
         
     }
