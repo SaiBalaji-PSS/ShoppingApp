@@ -28,7 +28,10 @@ class FavoriteCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        bgView.clipsToBounds = false
+        
         bgView.dropShadow(scale: true)
+      
     }
     
     func updateData(item: Favorite){

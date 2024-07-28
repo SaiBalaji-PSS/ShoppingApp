@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwr-Ci-wHZ">
-                                        <rect key="frame" x="8" y="20" width="41.333333333333336" height="20.333333333333329"/>
+                                        <rect key="frame" x="8" y="19.666666666666664" width="41.333333333333336" height="20.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -40,7 +40,6 @@
                                         <rect key="frame" x="271" y="16" width="41" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="41" id="4ca-SJ-XwD"/>
-                                            <constraint firstAttribute="height" constant="28" id="QVy-AK-XcB"/>
                                         </constraints>
                                         <color key="tintColor" red="0.062745098040000002" green="0.066666666669999999" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
@@ -57,9 +56,10 @@
                                     <constraint firstItem="qZS-Py-ojt" firstAttribute="centerY" secondItem="w0w-Zl-CJK" secondAttribute="centerY" id="L17-t6-Hvj"/>
                                     <constraint firstAttribute="bottom" secondItem="F2O-4m-NFa" secondAttribute="bottom" constant="2" id="ORn-nl-xZ7"/>
                                     <constraint firstItem="vwr-Ci-wHZ" firstAttribute="leading" secondItem="w0w-Zl-CJK" secondAttribute="leading" constant="8" id="Yn9-Do-nq5"/>
+                                    <constraint firstItem="F2O-4m-NFa" firstAttribute="top" secondItem="qZS-Py-ojt" secondAttribute="bottom" constant="12" id="lxz-6a-OdL"/>
                                     <constraint firstAttribute="trailing" secondItem="F2O-4m-NFa" secondAttribute="trailing" id="sSo-Rk-rxo"/>
-                                    <constraint firstAttribute="height" constant="60" id="slZ-hT-176"/>
                                     <constraint firstItem="F2O-4m-NFa" firstAttribute="leading" secondItem="w0w-Zl-CJK" secondAttribute="leading" id="yyt-ao-QPP"/>
+                                    <constraint firstItem="F2O-4m-NFa" firstAttribute="top" secondItem="vwr-Ci-wHZ" secondAttribute="bottom" constant="15.666666666666671" id="zch-f3-ECp"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO4-lk-WBc">
@@ -67,7 +67,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ze9-Y9-wn6">
                                         <rect key="frame" x="8" y="0.0" width="304" height="261"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LaL-Kl-vvc">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>

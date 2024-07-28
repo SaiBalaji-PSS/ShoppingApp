@@ -21,15 +21,18 @@ class HomeVC: UIViewController {
     private var selectedIndex = -1
     private var isCollapse = false
     
+    @IBOutlet weak var customNavBar: UIView!
+    
+    @IBOutlet weak var categoryBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-      
+        
         self.configureUI()
         
         self.setupBinding()
-       
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -37,19 +40,19 @@ class HomeVC: UIViewController {
         vm.getAllDatafromCart()
         vm.loadAllProducts()
     }
-
+    
     
     func setupBinding(){
         vm.$categories.receive(on: RunLoop.main).sink { cateogories in
             print(cateogories.count)
             if cateogories.isEmpty == false{
-              //  DatabaseService.shared.saveData(categories: cateogories)
+                //  DatabaseService.shared.saveData(categories: cateogories)
                 cateogories.forEach { category  in
                     print("Category is \(category.name ?? "")")
                     if let items = category.items?.allObjects as? [Item]{
                         print("Items are: \n")
                         items.forEach { item  in
-                          
+                            
                             print(item.id ?? "")
                         }
                     }
@@ -59,7 +62,11 @@ class HomeVC: UIViewController {
             
         }.store(in: &cancellables)
         vm.$carts.receive(on: RunLoop.main).sink { cartItems  in
-            self.cartItemLbl.text = "\(cartItems.count)"
+            var totalCount = 0
+            cartItems.forEach { cartItem in
+                totalCount = totalCount + Int(cartItem.quantity)
+            }
+            self.cartItemLbl.text = "\(totalCount)"
         }.store(in: &cancellables)
         vm.$error.receive(on: RunLoop.main).sink { error  in
             if let error{
@@ -68,9 +75,7 @@ class HomeVC: UIViewController {
         }.store(in: &cancellables)
     }
     
-    func loadData(){
-        
-    }
+   
     
     func configureUI(){
         self.navigationController?.navigationBar.isHidden = true
@@ -85,8 +90,13 @@ class HomeVC: UIViewController {
         self.cartView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cartBtnTapped)))
         self.favoriteView.isUserInteractionEnabled = true
         self.favoriteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteBtnPressed)))
-//        self.tableView.estimatedRowHeight = 250
-//        self.tableView.rowHeight = UITableView.automaticDimension
+        self.categoryBtn.layer.cornerRadius = 4.0
+        
+        
+      
+
+                
+   
         
     }
     
@@ -103,7 +113,16 @@ class HomeVC: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-
+    
+    @IBAction func categoryBtnPressed(_ sender: Any) {
+        var categoryPopUp = CategoriesPopupVC()
+        categoryPopUp.delegate = self 
+        categoryPopUp.show()
+        categoryPopUp.data = self.vm.categories.map({ category in
+            return category.name ?? ""
+        })
+        self.categoryBtn.isHidden = true
+    }
 }
 
 
@@ -117,32 +136,25 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         if let item = (self.vm.categories[indexPath.row].items?.allObjects as? [Item])?.sorted(by: { item1, item2 in
             Int(item1.id ?? "0")! < Int(item2.id ?? "0")!
         }){
-           if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell{
                 cell.updateCell(title: self.vm.categories[indexPath.row].name ?? "", items: item)
                 cell.tableViewIndex = indexPath
                 cell.delegate = self
                 return cell
             }
         }
-       return UITableViewCell()
+        return UITableViewCell()
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if let cell = tableView.cellForRow(at: indexPath) as? CategoryCell{
-//            if self.selectedIndex == indexPath.row && cell.isCollapse == true{
-//                return 250
-//            }
-//            else{
-//                return 60
-//            }
-//        }
+        
         if expandedCells.contains(indexPath.row) {
-                return 60// Expanded height
-            } else {
-                return 340 // Collapsed height
+            return 60
+        } else {
+            return 340
         }
-      //  return UITableView.automaticDimension
-       
+        
+        
     }
     
     
@@ -152,7 +164,7 @@ extension HomeVC: CategoryCellDelegate{
     func didPressAddBtn(favouriteItem: Item) {
         self.vm.saveItemToCart(id: favouriteItem.id ?? "", name: favouriteItem.name ?? "",units: 1, imageURL: favouriteItem.icon ?? "", price: "\(favouriteItem.price)")
     }
-
+    
     func didPressFavouriteBtn(tableViewIndex: IndexPath, index: IndexPath, likedItem: Item) {
         print("ITEM  \(likedItem.name ?? "") IS \(likedItem.isLiked)")
         self.vm.updateLikeStatus(itemLiked: likedItem, isLiked: likedItem.isLiked)
@@ -160,11 +172,18 @@ extension HomeVC: CategoryCellDelegate{
     }
     func expandBtnPressed(index: IndexPath) {
         if expandedCells.contains(index.row) {
-               expandedCells.remove(index.row)
-           } else {
-               expandedCells.insert(index.row)
-           }
-           
-           tableView.reloadRows(at: [index], with: .none)
+            expandedCells.remove(index.row)
+        } else {
+            expandedCells.insert(index.row)
+        }
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+}
+
+extension HomeVC: CloseBtnDelegate{
+    func closeBtnPressed() {
+        self.categoryBtn.isHidden = false
     }
 }

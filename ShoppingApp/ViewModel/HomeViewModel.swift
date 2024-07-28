@@ -74,8 +74,9 @@ class HomeViewModel: ObservableObject{
         }
         else{
             DatabaseService.shared.saveItemsToCart(id: id, name: name, units: units, imageURL: imageURL, price: price)
-            self.getAllDatafromCart()
+            
         }
+        self.getAllDatafromCart()
       
     }
     

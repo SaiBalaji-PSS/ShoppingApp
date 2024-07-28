@@ -40,6 +40,7 @@ class ItemCell: UICollectionViewCell {
         else{
             favouriteBtnPressed.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+        self.dropShadow(scale: true)
         
     }
     @IBAction func addBtnPressed(_ sender: UIButton) {

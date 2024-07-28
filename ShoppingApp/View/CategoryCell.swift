@@ -53,6 +53,7 @@ class CategoryCell: UITableViewCell {
     
     func updateCell(title: String,items:[Item]){
         self.titleLbl.text = title
+        self.items.removeAll()
         self.items = items
         
        // self.expandBtn.setImage(self.isCollapse ? UIImage(systemName: "chevron.right") : UIImage(systemName: "chevron.down"), for: .normal)
@@ -64,23 +65,28 @@ class CategoryCell: UITableViewCell {
 }
 extension CategoryCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("\(section) ITEM COUNT IS  \(self.items.count)")
         return self.items.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? ItemCell{
             cell.indexPath = indexPath
             cell.updateCell(itemName: self.items[indexPath.row].name ?? "", price: "\(self.items[indexPath.row].price)", imageURL: self.items[indexPath.row].icon ?? "", isLiked: self.items[indexPath.row].isLiked)
-            print("IS CELL ITEM LIKED \(self.items[indexPath.row].isLiked)")
+          
             cell.delegate = self
-            cell.dropShadow()
+            //cell.dropShadow()
             
             
             return cell
         }
+      
         return UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 180, height: 250)
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("CELL INDEX IS \(indexPath.item)")
     }
     
 }
